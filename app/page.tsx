@@ -1,9 +1,30 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { PHeadline, PText, PButton, PGrid, PGridItem } from "@porsche-design-system/components-react";
+import SearchByNotes from "@/components/SearchByNotes";
+import DupeFinder from "@/components/DupeFinder";
+import Explorer from "@/components/Explorer";
+
+type ActiveView = "dashboard" | "search" | "dupes" | "explore";
 
 export default function Home() {
+  const [activeView, setActiveView] = useState<ActiveView>("dashboard");
+
+  // Show expanded view based on active section
+  if (activeView === "search") {
+    return <SearchByNotes onBack={() => setActiveView("dashboard")} />;
+  }
+
+  if (activeView === "dupes") {
+    return <DupeFinder onBack={() => setActiveView("dashboard")} />;
+  }
+
+  if (activeView === "explore") {
+    return <Explorer onBack={() => setActiveView("dashboard")} />;
+  }
+
+  // Dashboard view
   return (
     <main className="min-h-screen p-8 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -39,51 +60,54 @@ export default function Home() {
         {/* Main Features Grid */}
         <PGrid className="mb-12">
           <PGridItem size={12} className="mb-4">
-            <div className="p-8 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <button
+              onClick={() => setActiveView("search")}
+              className="w-full p-8 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all hover:scale-[1.02] cursor-pointer text-left"
+            >
               <PHeadline variant="headline-3" className="mb-4">
                 Search by Notes
               </PHeadline>
               <PText className="mb-6">
                 Enter perfume notes to find matching fragrances. Filter by price, brand, and more.
               </PText>
-              <Link href="/search">
-                <PButton variant="primary">
-                  Start Searching
-                </PButton>
-              </Link>
-            </div>
+              <PButton variant="primary">
+                Start Searching →
+              </PButton>
+            </button>
           </PGridItem>
 
           <PGridItem size={6}>
-            <div className="p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow">
+            <button
+              onClick={() => setActiveView("dupes")}
+              className="w-full p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-all hover:scale-[1.02] cursor-pointer text-left"
+            >
               <PHeadline variant="headline-4" className="mb-4">
                 Dupe Finder
               </PHeadline>
               <PText className="mb-6">
                 Find affordable alternatives to expensive fragrances based on note similarity.
               </PText>
-              <Link href="/dupes">
-                <PButton variant="secondary">
-                  Find Dupes
-                </PButton>
-              </Link>
-            </div>
+              <PButton variant="secondary">
+                Find Dupes →
+              </PButton>
+            </button>
           </PGridItem>
 
           <PGridItem size={6}>
-            <div className="p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-shadow">
+            <button
+              onClick={() => setActiveView("explore")}
+              className="w-full p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-all hover:scale-[1.02] cursor-pointer text-left"
+            >
               <PHeadline variant="headline-4" className="mb-4">
                 Fragrance Explorer
               </PHeadline>
               <PText className="mb-6">
                 Explore perfumes visually with interactive note pyramids and ingredient details.
               </PText>
-              <Link href="/explore">
-                <PButton variant="secondary">
-                  Explore
-                </PButton>
-              </Link>
-            </div>
+              <PButton variant="secondary">
+                Explore →
+              </PButton>
+            </button>
           </PGridItem>
         </PGrid>
 
