@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { PHeadline, PText, PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
+import { PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
 import { searchByNotes, allNotes } from "@/utils/fragrance";
 import type { FragranceSimilarity } from "@/types/fragrance";
 import FragranceCard from "./FragranceCard";
@@ -52,10 +52,10 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Search by Notes
-            </div>
-            <PText className="text-sm md:text-base text-gray-300">Find fragrances by selecting notes you love</PText>
+            </h2>
+            <p className="text-sm md:text-base text-gray-300">Find fragrances by selecting notes you love</p>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -66,9 +66,9 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
           {/* Left Column - Note Selection */}
           <div className="lg:col-span-1 space-y-4">
             <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-6">
-              <PHeadline variant="headline-4" className="mb-4 text-white">
+              <h3 className="text-xl font-bold mb-4 text-white">
                 Select Notes
-              </PHeadline>
+              </h3>
 
               {/* Note Search */}
               <div className="mb-4">
@@ -86,9 +86,9 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
               {/* Selected Notes */}
               {selectedNotes.length > 0 && (
                 <div className="mb-4">
-                  <PText size="small" className="mb-2 font-semibold text-gray-200">
+                  <p className="text-sm mb-2 font-semibold text-gray-200">
                     Selected ({selectedNotes.length}):
-                  </PText>
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {selectedNotes.map(note => (
                       <button
@@ -105,9 +105,9 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
 
               {/* Available Notes */}
               <div className="mb-4">
-                <PText size="small" className="mb-2 font-semibold text-gray-200">
+                <p className="text-sm mb-2 font-semibold text-gray-200">
                   Available Notes:
-                </PText>
+                </p>
                 <div className="max-h-96 overflow-y-auto space-y-1">
                   {filteredNotes.map(note => (
                     <button
@@ -152,12 +152,12 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
             {results.length > 0 ? (
               <div>
                 <div className="mb-4">
-                  <PHeadline variant="headline-4" className="mb-2 text-white">
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     Found {results.length} matches
-                  </PHeadline>
-                  <PText size="small" className="text-gray-300">
+                  </h3>
+                  <p className="text-sm text-gray-300">
                     Sorted by similarity to your selected notes
-                  </PText>
+                  </p>
                 </div>
                 <div className="space-y-4">
                   {results.map(({ fragrance, similarity, matchingNotes }) => (
@@ -172,12 +172,12 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
               </div>
             ) : (
               <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-12 text-center">
-                <PHeadline variant="headline-4" className="mb-4 text-white">
+                <h3 className="text-xl font-bold mb-4 text-white">
                   Select notes to start searching
-                </PHeadline>
-                <PText className="text-gray-300">
+                </h3>
+                <p className="text-gray-300">
                   Choose one or more notes from the left panel to find fragrances that match your preferences
-                </PText>
+                </p>
               </div>
             )}
           </div>

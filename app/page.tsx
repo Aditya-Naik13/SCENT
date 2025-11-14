@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PHeadline, PText, PButton, PGrid, PGridItem } from "@porsche-design-system/components-react";
+import { PButton } from "@porsche-design-system/components-react";
 import SearchByNotes from "@/components/SearchByNotes";
 import DupeFinder from "@/components/DupeFinder";
 import Explorer from "@/components/Explorer";
@@ -30,30 +30,30 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 md:mb-16 pt-6 md:pt-12">
-          <PHeadline variant="headline-1" className="mb-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
             SCENT
-          </PHeadline>
-          <PText size="large" className="mb-2 text-gray-200">
+          </h1>
+          <p className="text-lg md:text-xl mb-2 text-gray-200">
             Smart Comparison Engine for Notes & Traits
-          </PText>
-          <PText className="text-sm md:text-base text-gray-400">
+          </p>
+          <p className="text-sm md:text-base text-gray-400">
             Find affordable perfume dupes and discover fragrances by their notes
-          </PText>
+          </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-12 max-w-2xl mx-auto">
           <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
             <div className="text-2xl md:text-4xl font-bold text-white">517</div>
-            <PText size="small" className="text-xs md:text-sm text-gray-300">Fragrances</PText>
+            <p className="text-xs md:text-sm text-gray-300">Fragrances</p>
           </div>
           <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
             <div className="text-2xl md:text-4xl font-bold text-white">498</div>
-            <PText size="small" className="text-xs md:text-sm text-gray-300">Unique Notes</PText>
+            <p className="text-xs md:text-sm text-gray-300">Unique Notes</p>
           </div>
           <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
             <div className="text-2xl md:text-4xl font-bold text-white">100%</div>
-            <PText size="small" className="text-xs md:text-sm text-gray-300">Free</PText>
+            <p className="text-xs md:text-sm text-gray-300">Free</p>
           </div>
         </div>
 
@@ -66,9 +66,9 @@ export default function Home() {
             <div className="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-white">
               Search by Notes
             </div>
-            <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
+            <p className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
               Enter perfume notes to find matching fragrances. Filter by price, brand, and more.
-            </PText>
+            </p>
             <PButton variant="primary">
               Start Searching →
             </PButton>
@@ -82,9 +82,9 @@ export default function Home() {
               <div className="text-lg md:text-xl font-bold mb-2 md:mb-4 text-white">
                 Dupe Finder
               </div>
-              <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
+              <p className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
                 Find affordable alternatives to expensive fragrances based on note similarity.
-              </PText>
+              </p>
               <PButton variant="secondary">
                 Find Dupes →
               </PButton>
@@ -97,9 +97,9 @@ export default function Home() {
               <div className="text-lg md:text-xl font-bold mb-2 md:mb-4 text-white">
                 Fragrance Explorer
               </div>
-              <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
+              <p className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
                 Explore perfumes visually with interactive note pyramids and ingredient details.
-              </PText>
+              </p>
               <PButton variant="secondary">
                 Explore →
               </PButton>
@@ -109,9 +109,9 @@ export default function Home() {
 
         {/* Info Section */}
         <div className="text-center mt-16 pb-12">
-          <PText size="small" className="text-gray-400">
+          <p className="text-sm text-gray-400">
             Discover your perfect scent without breaking the bank
-          </PText>
+          </p>
         </div>
       </div>
     </main>

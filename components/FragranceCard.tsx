@@ -1,6 +1,6 @@
 "use client";
 
-import { PHeadline, PText } from "@porsche-design-system/components-react";
+import React from "react";
 import type { Fragrance } from "@/types/fragrance";
 import Image from "next/image";
 
@@ -49,12 +49,12 @@ export default function FragranceCard({
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1 min-w-0">
-            <PHeadline variant="headline-4" className="mb-1 truncate text-white">
+            <h3 className="mb-1 truncate text-xl font-bold text-white">
               {fragrance.name}
-            </PHeadline>
-            <PText size="small" className="text-gray-300">
+            </h3>
+            <p className="text-gray-300 text-sm">
               {fragrance.brand}
-            </PText>
+            </p>
           </div>
           {similarity !== undefined && (
             <div className="ml-4 flex-shrink-0">
@@ -62,9 +62,9 @@ export default function FragranceCard({
                 <div className="text-2xl font-bold text-blue-400">
                   {Math.round(similarity * 100)}%
                 </div>
-                <PText size="small" className="text-gray-400">
+                <p className="text-gray-400 text-sm">
                   Match
-                </PText>
+                </p>
               </div>
             </div>
           )}
@@ -74,22 +74,22 @@ export default function FragranceCard({
         <div className="flex items-center gap-4 mb-3">
           <div className="flex items-center gap-1">
             <span className="text-yellow-500">★</span>
-            <PText size="small" className="text-gray-200">{fragrance.rating.toFixed(1)}</PText>
-            <PText size="small" className="text-gray-400">
+            <p className="text-gray-200 text-sm">{fragrance.rating.toFixed(1)}</p>
+            <p className="text-gray-400 text-sm">
               ({fragrance.votes} votes)
-            </PText>
+            </p>
           </div>
-          <PText size="small" className="text-gray-300 capitalize">
+          <p className="text-gray-300 capitalize text-sm">
             {fragrance.gender}
-          </PText>
+          </p>
         </div>
 
         {/* Matching Notes */}
         {allMatchingNotes.length > 0 && (
           <div className="mb-3">
-            <PText size="small" className="font-semibold mb-1 text-gray-200">
+            <p className="font-semibold mb-1 text-gray-200 text-sm">
               Matching notes:
-            </PText>
+            </p>
             <div className="flex flex-wrap gap-1">
               {allMatchingNotes.slice(0, 10).map((note, idx) => (
                 <span
@@ -113,23 +113,23 @@ export default function FragranceCard({
           <div className="space-y-2">
             {fragrance.topNotes.length > 0 && (
               <div>
-                <PText size="small" className="font-semibold text-gray-200">
+                <p className="font-semibold text-gray-200 text-sm">
                   Top: <span className="font-normal text-gray-300">{fragrance.topNotes.join(", ")}</span>
-                </PText>
+                </p>
               </div>
             )}
             {fragrance.middleNotes.length > 0 && (
               <div>
-                <PText size="small" className="font-semibold text-gray-200">
+                <p className="font-semibold text-gray-200 text-sm">
                   Middle: <span className="font-normal text-gray-300">{fragrance.middleNotes.join(", ")}</span>
-                </PText>
+                </p>
               </div>
             )}
             {fragrance.baseNotes.length > 0 && (
               <div>
-                <PText size="small" className="font-semibold text-gray-200">
+                <p className="font-semibold text-gray-200 text-sm">
                   Base: <span className="font-normal text-gray-300">{fragrance.baseNotes.join(", ")}</span>
-                </PText>
+                </p>
               </div>
             )}
           </div>

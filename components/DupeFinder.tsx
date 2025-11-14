@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { PHeadline, PText, PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
+import { PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
 import { fragrances, findSimilarFragrances } from "@/utils/fragrance";
 import type { Fragrance, FragranceSimilarity } from "@/types/fragrance";
 import FragranceCard from "./FragranceCard";
@@ -48,10 +48,10 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Dupe Finder
-            </div>
-            <PText className="text-sm md:text-base text-gray-300">Find affordable alternatives to expensive fragrances</PText>
+            </h2>
+            <p className="text-sm md:text-base text-gray-300">Find affordable alternatives to expensive fragrances</p>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -62,9 +62,9 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
         {!selectedFragrance ? (
           <div className="max-w-2xl mx-auto">
             <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-8">
-              <PHeadline variant="headline-4" className="mb-4 text-white">
+              <h3 className="text-xl font-bold mb-4 text-white">
                 Search for a fragrance
-              </PHeadline>
+              </h3>
 
               <div className="relative">
                 <PTextFieldWrapper label="Fragrance name or brand">
@@ -96,9 +96,9 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
               </div>
 
               {searchQuery && filteredFragrances.length === 0 && (
-                <PText size="small" className="mt-2 text-gray-400">
+                <p className="text-sm mt-2 text-gray-400">
                   No fragrances found. Try a different search term.
-                </PText>
+                </p>
               )}
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
             {/* Original Fragrance */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <PHeadline variant="headline-4" className="text-white">Original Fragrance</PHeadline>
+                <h3 className="text-xl font-bold text-white">Original Fragrance</h3>
                 <PButton variant="tertiary" onClick={handleClear}>
                   Search Different
                 </PButton>
@@ -119,12 +119,12 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
             {dupes.length > 0 && (
               <div>
                 <div className="mb-4">
-                  <PHeadline variant="headline-4" className="mb-2 text-white">
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     Found {dupes.length} Similar Fragrances
-                  </PHeadline>
-                  <PText size="small" className="text-gray-300">
+                  </h3>
+                  <p className="text-sm text-gray-300">
                     Sorted by similarity based on note composition
-                  </PText>
+                  </p>
                 </div>
 
                 <div className="space-y-4">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { PHeadline, PText, PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
+import { PButton, PTextFieldWrapper } from "@porsche-design-system/components-react";
 import { fragrances, getAllBrands, getAllGenders } from "@/utils/fragrance";
 import type { Fragrance } from "@/types/fragrance";
 import FragranceCard from "./FragranceCard";
@@ -103,7 +103,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-4 md:p-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
-            <div className="text-2xl md:text-3xl font-bold text-white">Fragrance Details</div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Fragrance Details</h2>
             <PButton variant="tertiary" onClick={() => setSelectedFragrance(null)} className="self-start md:self-auto">
               Back to Explorer
             </PButton>
@@ -131,12 +131,12 @@ export default function Explorer({ onBack }: ExplorerProps) {
               {/* Details */}
               <div className="md:col-span-2 space-y-6">
                 <div>
-                  <PHeadline variant="headline-3" className="mb-2 text-white">
+                  <h2 className="mb-2 text-2xl font-bold text-white">
                     {selectedFragrance.name}
-                  </PHeadline>
-                  <PText size="large" className="text-gray-300">
+                  </h2>
+                  <p className="text-gray-300 text-lg">
                     {selectedFragrance.brand}
-                  </PText>
+                  </p>
                 </div>
 
                 {/* Rating & Stats */}
@@ -146,36 +146,36 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       <span className="text-yellow-500 text-xl">★</span>
                       <span className="text-2xl font-bold text-white">{selectedFragrance.rating.toFixed(1)}</span>
                     </div>
-                    <PText size="small" className="text-gray-400">
+                    <p className="text-gray-400 text-sm">
                       {selectedFragrance.votes} votes
-                    </PText>
+                    </p>
                   </div>
                   <div className="border-l border-gray-600 pl-4 md:pl-6">
-                    <PText size="small" className="text-gray-400 mb-1">
+                    <p className="text-gray-400 mb-1 text-sm">
                       Gender
-                    </PText>
-                    <PText className="capitalize text-white">{selectedFragrance.gender}</PText>
+                    </p>
+                    <p className="capitalize text-white">{selectedFragrance.gender}</p>
                   </div>
                 </div>
 
                 {/* Description */}
                 {selectedFragrance.description && (
                   <div>
-                    <PText className="text-gray-300 leading-relaxed">
+                    <p className="text-gray-300 leading-relaxed">
                       {selectedFragrance.description.split('.')[0]}.
-                    </PText>
+                    </p>
                   </div>
                 )}
 
                 {/* Notes */}
                 <div className="space-y-4">
-                  <PHeadline variant="headline-5" className="text-white">Fragrance Notes</PHeadline>
+                  <h4 className="text-lg font-bold text-white mb-4">Fragrance Notes</h4>
 
                   {selectedFragrance.topNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2 text-gray-200">
+                      <p className="font-semibold mb-2 text-gray-200 text-sm">
                         Top Notes
-                      </PText>
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.topNotes.map((note, idx) => (
                           <span
@@ -191,9 +191,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                   {selectedFragrance.middleNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2 text-gray-200">
+                      <p className="font-semibold mb-2 text-gray-200 text-sm">
                         Middle Notes (Heart)
-                      </PText>
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.middleNotes.map((note, idx) => (
                           <span
@@ -209,9 +209,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                   {selectedFragrance.baseNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2 text-gray-200">
+                      <p className="font-semibold mb-2 text-gray-200 text-sm">
                         Base Notes
-                      </PText>
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.baseNotes.map((note, idx) => (
                           <span
@@ -231,9 +231,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {selectedFragrance.longevity && Object.keys(selectedFragrance.longevity).length > 0 && (
                       <div>
-                        <PText size="small" className="font-semibold mb-2 text-gray-200">
+                        <p className="font-semibold mb-2 text-gray-200 text-sm">
                           Longevity
-                        </PText>
+                        </p>
                         <div className="space-y-1">
                           {Object.entries(selectedFragrance.longevity)
                             .sort(([, a], [, b]) => (b as number) - (a as number))
@@ -250,9 +250,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                     {selectedFragrance.sillage && Object.keys(selectedFragrance.sillage).length > 0 && (
                       <div>
-                        <PText size="small" className="font-semibold mb-2 text-gray-200">
+                        <p className="font-semibold mb-2 text-gray-200 text-sm">
                           Sillage
-                        </PText>
+                        </p>
                         <div className="space-y-1">
                           {Object.entries(selectedFragrance.sillage)
                             .sort(([, a], [, b]) => (b as number) - (a as number))
@@ -276,15 +276,15 @@ export default function Explorer({ onBack }: ExplorerProps) {
               selectedFragrance.middleNotes.length > 0 ||
               selectedFragrance.baseNotes.length > 0) && (
               <div className="mt-8 pt-8 border-t border-gray-700">
-                <PHeadline variant="headline-4" className="mb-6 text-center text-white">
+                <h3 className="mb-6 text-center text-xl font-bold text-white">
                   Visual Analysis
-                </PHeadline>
+                </h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Note Pyramid */}
                   <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                    <PHeadline variant="headline-5" className="mb-4 text-center text-white">
+                    <h4 className="mb-4 text-center text-lg font-bold text-white">
                       Note Pyramid
-                    </PHeadline>
+                    </h4>
                     <NotePyramid
                       topNotes={selectedFragrance.topNotes}
                       middleNotes={selectedFragrance.middleNotes}
@@ -292,24 +292,24 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       width={350}
                       height={280}
                     />
-                    <PText size="small" className="text-center mt-4 text-gray-400">
+                    <p className="text-center mt-4 text-gray-400 text-sm">
                       Hierarchical composition from top to base
-                    </PText>
+                    </p>
                   </div>
 
                   {/* Accord Wheel */}
                   <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
-                    <PHeadline variant="headline-5" className="mb-4 text-center text-white">
+                    <h4 className="mb-4 text-center text-lg font-bold text-white">
                       Accord Wheel
-                    </PHeadline>
+                    </h4>
                     <AccordWheel
                       fragrance={selectedFragrance}
                       width={300}
                       height={280}
                     />
-                    <PText size="small" className="text-center mt-4 text-gray-400">
+                    <p className="text-center mt-4 text-gray-400 text-sm">
                       Fragrance family distribution
-                    </PText>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -326,10 +326,10 @@ export default function Explorer({ onBack }: ExplorerProps) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Fragrance Explorer
-            </div>
-            <PText className="text-sm md:text-base text-gray-300">Browse and discover {fragrances.length} fragrances</PText>
+            </h2>
+            <p className="text-sm md:text-base text-gray-300">Browse and discover {fragrances.length} fragrances</p>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -340,7 +340,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
           {/* Filters Sidebar */}
           <div className="lg:col-span-1 space-y-4">
             <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-6 space-y-4">
-              <PHeadline variant="headline-5" className="text-white">Filters</PHeadline>
+              <h4 className="text-lg font-bold text-white mb-4">Filters</h4>
 
               {/* Search */}
               <div>
@@ -357,9 +357,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Gender */}
               <div>
-                <PText size="small" className="font-semibold mb-2 text-gray-200">
+                <p className="font-semibold mb-2 text-gray-200 text-sm">
                   Gender
-                </PText>
+                </p>
                 <select
                   value={selectedGender}
                   onChange={(e) => setSelectedGender(e.target.value)}
@@ -374,9 +374,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Brand */}
               <div>
-                <PText size="small" className="font-semibold mb-2 text-gray-200">
+                <p className="font-semibold mb-2 text-gray-200 text-sm">
                   Brand
-                </PText>
+                </p>
                 <select
                   value={selectedBrand}
                   onChange={(e) => setSelectedBrand(e.target.value)}
@@ -393,9 +393,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Minimum Rating */}
               <div>
-                <PText size="small" className="font-semibold mb-2 text-gray-200">
+                <p className="font-semibold mb-2 text-gray-200 text-sm">
                   Minimum Rating
-                </PText>
+                </p>
                 <select
                   value={minRating}
                   onChange={(e) => setMinRating(Number(e.target.value))}
@@ -411,9 +411,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Price Value */}
               <div>
-                <PText size="small" className="font-semibold mb-2 text-gray-200">
+                <p className="font-semibold mb-2 text-gray-200 text-sm">
                   Price Value
-                </PText>
+                </p>
                 <select
                   value={priceValue}
                   onChange={(e) => setPriceValue(e.target.value)}
@@ -430,9 +430,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Sort */}
               <div>
-                <PText size="small" className="font-semibold mb-2 text-gray-200">
+                <p className="font-semibold mb-2 text-gray-200 text-sm">
                   Sort by
-                </PText>
+                </p>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
@@ -453,9 +453,9 @@ export default function Explorer({ onBack }: ExplorerProps) {
           {/* Results */}
           <div className="lg:col-span-3">
             <div className="mb-4">
-              <PText size="small" className="text-gray-400">
+              <p className="text-gray-400 text-sm">
                 Showing {displayedFragrances.length} of {fragrances.length} fragrances
-              </PText>
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -472,10 +472,10 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
             {displayedFragrances.length === 0 && (
               <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-12 text-center">
-                <PHeadline variant="headline-4" className="mb-4 text-white">
+                <h3 className="mb-4 text-xl font-bold text-white">
                   No fragrances found
-                </PHeadline>
-                <PText className="text-gray-300">Try adjusting your filters or search query</PText>
+                </h3>
+                <p className="text-gray-300">Try adjusting your filters or search query</p>
               </div>
             )}
           </div>
