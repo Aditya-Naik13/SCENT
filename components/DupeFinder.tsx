@@ -43,15 +43,15 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2">
+            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Dupe Finder
             </div>
-            <PText className="text-sm md:text-base">Find affordable alternatives to expensive fragrances</PText>
+            <PText className="text-sm md:text-base text-gray-300">Find affordable alternatives to expensive fragrances</PText>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -61,8 +61,8 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
         {/* Search Section */}
         {!selectedFragrance ? (
           <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <PHeadline variant="headline-4" className="mb-4">
+            <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-8">
+              <PHeadline variant="headline-4" className="mb-4 text-white">
                 Search for a fragrance
               </PHeadline>
 
@@ -73,22 +73,22 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="e.g., Creed Aventus, Chanel No 5..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     autoFocus
                   />
                 </PTextFieldWrapper>
 
                 {/* Search Results Dropdown */}
                 {filteredFragrances.length > 0 && (
-                  <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                  <div className="absolute z-10 w-full mt-2 bg-gray-700 border border-gray-600 rounded-lg shadow-lg max-h-96 overflow-y-auto">
                     {filteredFragrances.map(fragrance => (
                       <button
                         key={fragrance.id}
                         onClick={() => handleSelectFragrance(fragrance)}
-                        className="w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                        className="w-full text-left px-4 py-3 hover:bg-gray-600 transition-colors border-b border-gray-600 last:border-b-0"
                       >
-                        <div className="font-semibold">{fragrance.name}</div>
-                        <div className="text-sm text-gray-600">{fragrance.brand}</div>
+                        <div className="font-semibold text-white">{fragrance.name}</div>
+                        <div className="text-sm text-gray-300">{fragrance.brand}</div>
                       </button>
                     ))}
                   </div>
@@ -96,7 +96,7 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
               </div>
 
               {searchQuery && filteredFragrances.length === 0 && (
-                <PText size="small" className="mt-2 text-gray-600">
+                <PText size="small" className="mt-2 text-gray-400">
                   No fragrances found. Try a different search term.
                 </PText>
               )}
@@ -107,7 +107,7 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
             {/* Original Fragrance */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <PHeadline variant="headline-4">Original Fragrance</PHeadline>
+                <PHeadline variant="headline-4" className="text-white">Original Fragrance</PHeadline>
                 <PButton variant="tertiary" onClick={handleClear}>
                   Search Different
                 </PButton>
@@ -119,10 +119,10 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
             {dupes.length > 0 && (
               <div>
                 <div className="mb-4">
-                  <PHeadline variant="headline-4" className="mb-2">
+                  <PHeadline variant="headline-4" className="mb-2 text-white">
                     Found {dupes.length} Similar Fragrances
                   </PHeadline>
-                  <PText size="small" className="text-gray-600">
+                  <PText size="small" className="text-gray-300">
                     Sorted by similarity based on note composition
                   </PText>
                 </div>

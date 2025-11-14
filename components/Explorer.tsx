@@ -100,20 +100,20 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
   if (selectedFragrance) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-4 md:p-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
-            <div className="text-2xl md:text-3xl font-bold">Fragrance Details</div>
+            <div className="text-2xl md:text-3xl font-bold text-white">Fragrance Details</div>
             <PButton variant="tertiary" onClick={() => setSelectedFragrance(null)} className="self-start md:self-auto">
               Back to Explorer
             </PButton>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-4 md:p-8">
+          <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-4 md:p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {/* Image */}
               <div className="md:col-span-1">
-                <div className="w-full aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                <div className="w-full aspect-square bg-gray-700 rounded-lg overflow-hidden">
                   {selectedFragrance.image ? (
                     <img
                       src={selectedFragrance.image}
@@ -121,7 +121,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    <div className="w-full h-full flex items-center justify-center text-gray-500">
                       No Image
                     </div>
                   )}
@@ -131,10 +131,10 @@ export default function Explorer({ onBack }: ExplorerProps) {
               {/* Details */}
               <div className="md:col-span-2 space-y-6">
                 <div>
-                  <PHeadline variant="headline-3" className="mb-2">
+                  <PHeadline variant="headline-3" className="mb-2 text-white">
                     {selectedFragrance.name}
                   </PHeadline>
-                  <PText size="large" className="text-gray-600">
+                  <PText size="large" className="text-gray-300">
                     {selectedFragrance.brand}
                   </PText>
                 </div>
@@ -144,24 +144,24 @@ export default function Explorer({ onBack }: ExplorerProps) {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-yellow-500 text-xl">★</span>
-                      <span className="text-2xl font-bold">{selectedFragrance.rating.toFixed(1)}</span>
+                      <span className="text-2xl font-bold text-white">{selectedFragrance.rating.toFixed(1)}</span>
                     </div>
-                    <PText size="small" className="text-gray-600">
+                    <PText size="small" className="text-gray-400">
                       {selectedFragrance.votes} votes
                     </PText>
                   </div>
-                  <div className="border-l pl-4 md:pl-6">
-                    <PText size="small" className="text-gray-600 mb-1">
+                  <div className="border-l border-gray-600 pl-4 md:pl-6">
+                    <PText size="small" className="text-gray-400 mb-1">
                       Gender
                     </PText>
-                    <PText className="capitalize">{selectedFragrance.gender}</PText>
+                    <PText className="capitalize text-white">{selectedFragrance.gender}</PText>
                   </div>
                 </div>
 
                 {/* Description */}
                 {selectedFragrance.description && (
                   <div>
-                    <PText className="text-gray-700 leading-relaxed">
+                    <PText className="text-gray-300 leading-relaxed">
                       {selectedFragrance.description.split('.')[0]}.
                     </PText>
                   </div>
@@ -169,18 +169,18 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                 {/* Notes */}
                 <div className="space-y-4">
-                  <PHeadline variant="headline-5">Fragrance Notes</PHeadline>
+                  <PHeadline variant="headline-5" className="text-white">Fragrance Notes</PHeadline>
 
                   {selectedFragrance.topNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2">
+                      <PText size="small" className="font-semibold mb-2 text-gray-200">
                         Top Notes
                       </PText>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.topNotes.map((note, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm"
+                            className="px-3 py-1 bg-yellow-900 text-yellow-200 rounded-full text-sm"
                           >
                             {note}
                           </span>
@@ -191,14 +191,14 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                   {selectedFragrance.middleNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2">
+                      <PText size="small" className="font-semibold mb-2 text-gray-200">
                         Middle Notes (Heart)
                       </PText>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.middleNotes.map((note, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
+                            className="px-3 py-1 bg-pink-900 text-pink-200 rounded-full text-sm"
                           >
                             {note}
                           </span>
@@ -209,14 +209,14 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                   {selectedFragrance.baseNotes.length > 0 && (
                     <div>
-                      <PText size="small" className="font-semibold mb-2">
+                      <PText size="small" className="font-semibold mb-2 text-gray-200">
                         Base Notes
                       </PText>
                       <div className="flex flex-wrap gap-2">
                         {selectedFragrance.baseNotes.map((note, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                            className="px-3 py-1 bg-purple-900 text-purple-200 rounded-full text-sm"
                           >
                             {note}
                           </span>
@@ -231,7 +231,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {selectedFragrance.longevity && Object.keys(selectedFragrance.longevity).length > 0 && (
                       <div>
-                        <PText size="small" className="font-semibold mb-2">
+                        <PText size="small" className="font-semibold mb-2 text-gray-200">
                           Longevity
                         </PText>
                         <div className="space-y-1">
@@ -240,8 +240,8 @@ export default function Explorer({ onBack }: ExplorerProps) {
                             .slice(0, 3)
                             .map(([key, value]) => (
                               <div key={key} className="flex justify-between text-sm">
-                                <span className="capitalize">{key}</span>
-                                <span className="text-gray-600">{value}</span>
+                                <span className="capitalize text-gray-300">{key}</span>
+                                <span className="text-gray-400">{value}</span>
                               </div>
                             ))}
                         </div>
@@ -250,7 +250,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                     {selectedFragrance.sillage && Object.keys(selectedFragrance.sillage).length > 0 && (
                       <div>
-                        <PText size="small" className="font-semibold mb-2">
+                        <PText size="small" className="font-semibold mb-2 text-gray-200">
                           Sillage
                         </PText>
                         <div className="space-y-1">
@@ -259,8 +259,8 @@ export default function Explorer({ onBack }: ExplorerProps) {
                             .slice(0, 3)
                             .map(([key, value]) => (
                               <div key={key} className="flex justify-between text-sm">
-                                <span className="capitalize">{key}</span>
-                                <span className="text-gray-600">{value}</span>
+                                <span className="capitalize text-gray-300">{key}</span>
+                                <span className="text-gray-400">{value}</span>
                               </div>
                             ))}
                         </div>
@@ -275,14 +275,14 @@ export default function Explorer({ onBack }: ExplorerProps) {
             {(selectedFragrance.topNotes.length > 0 ||
               selectedFragrance.middleNotes.length > 0 ||
               selectedFragrance.baseNotes.length > 0) && (
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <PHeadline variant="headline-4" className="mb-6 text-center">
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <PHeadline variant="headline-4" className="mb-6 text-center text-white">
                   Visual Analysis
                 </PHeadline>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Note Pyramid */}
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <PHeadline variant="headline-5" className="mb-4 text-center">
+                  <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                    <PHeadline variant="headline-5" className="mb-4 text-center text-white">
                       Note Pyramid
                     </PHeadline>
                     <NotePyramid
@@ -292,14 +292,14 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       width={350}
                       height={280}
                     />
-                    <PText size="small" className="text-center mt-4 text-gray-600">
+                    <PText size="small" className="text-center mt-4 text-gray-400">
                       Hierarchical composition from top to base
                     </PText>
                   </div>
 
                   {/* Accord Wheel */}
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <PHeadline variant="headline-5" className="mb-4 text-center">
+                  <div className="bg-gray-900 rounded-lg p-6 border border-gray-700">
+                    <PHeadline variant="headline-5" className="mb-4 text-center text-white">
                       Accord Wheel
                     </PHeadline>
                     <AccordWheel
@@ -307,7 +307,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       width={300}
                       height={280}
                     />
-                    <PText size="small" className="text-center mt-4 text-gray-600">
+                    <PText size="small" className="text-center mt-4 text-gray-400">
                       Fragrance family distribution
                     </PText>
                   </div>
@@ -321,15 +321,15 @@ export default function Explorer({ onBack }: ExplorerProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2">
+            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Fragrance Explorer
             </div>
-            <PText className="text-sm md:text-base">Browse and discover {fragrances.length} fragrances</PText>
+            <PText className="text-sm md:text-base text-gray-300">Browse and discover {fragrances.length} fragrances</PText>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -339,8 +339,8 @@ export default function Explorer({ onBack }: ExplorerProps) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Filters Sidebar */}
           <div className="lg:col-span-1 space-y-4">
-            <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-              <PHeadline variant="headline-5">Filters</PHeadline>
+            <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-6 space-y-4">
+              <PHeadline variant="headline-5" className="text-white">Filters</PHeadline>
 
               {/* Search */}
               <div>
@@ -350,20 +350,20 @@ export default function Explorer({ onBack }: ExplorerProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Name or note..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </PTextFieldWrapper>
               </div>
 
               {/* Gender */}
               <div>
-                <PText size="small" className="font-semibold mb-2">
+                <PText size="small" className="font-semibold mb-2 text-gray-200">
                   Gender
                 </PText>
                 <select
                   value={selectedGender}
                   onChange={(e) => setSelectedGender(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="all">All</option>
                   <option value="women">Women</option>
@@ -374,13 +374,13 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Brand */}
               <div>
-                <PText size="small" className="font-semibold mb-2">
+                <PText size="small" className="font-semibold mb-2 text-gray-200">
                   Brand
                 </PText>
                 <select
                   value={selectedBrand}
                   onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 max-h-40"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 max-h-40"
                 >
                   <option value="all">All Brands</option>
                   {brands.map(brand => (
@@ -393,13 +393,13 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Minimum Rating */}
               <div>
-                <PText size="small" className="font-semibold mb-2">
+                <PText size="small" className="font-semibold mb-2 text-gray-200">
                   Minimum Rating
                 </PText>
                 <select
                   value={minRating}
                   onChange={(e) => setMinRating(Number(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value={0}>All Ratings</option>
                   <option value={3.0}>3.0+ ★</option>
@@ -411,13 +411,13 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Price Value */}
               <div>
-                <PText size="small" className="font-semibold mb-2">
+                <PText size="small" className="font-semibold mb-2 text-gray-200">
                   Price Value
                 </PText>
                 <select
                   value={priceValue}
                   onChange={(e) => setPriceValue(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="all">All Values</option>
                   <option value="great value">Great Value 💎</option>
@@ -430,13 +430,13 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
               {/* Sort */}
               <div>
-                <PText size="small" className="font-semibold mb-2">
+                <PText size="small" className="font-semibold mb-2 text-gray-200">
                   Sort by
                 </PText>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="rating">Highest Rated</option>
                   <option value="votes">Most Popular</option>
@@ -453,7 +453,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
           {/* Results */}
           <div className="lg:col-span-3">
             <div className="mb-4">
-              <PText size="small" className="text-gray-600">
+              <PText size="small" className="text-gray-400">
                 Showing {displayedFragrances.length} of {fragrances.length} fragrances
               </PText>
             </div>
@@ -471,11 +471,11 @@ export default function Explorer({ onBack }: ExplorerProps) {
             </div>
 
             {displayedFragrances.length === 0 && (
-              <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-                <PHeadline variant="headline-4" className="mb-4">
+              <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-12 text-center">
+                <PHeadline variant="headline-4" className="mb-4 text-white">
                   No fragrances found
                 </PHeadline>
-                <PText>Try adjusting your filters or search query</PText>
+                <PText className="text-gray-300">Try adjusting your filters or search query</PText>
               </div>
             )}
           </div>

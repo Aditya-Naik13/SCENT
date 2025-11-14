@@ -26,34 +26,34 @@ export default function Home() {
 
   // Dashboard view
   return (
-    <main className="min-h-screen p-4 md:p-8 bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen p-4 md:p-8 bg-gradient-to-b from-gray-900 to-black">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 md:mb-16 pt-6 md:pt-12">
-          <PHeadline variant="headline-1" className="mb-4">
+          <PHeadline variant="headline-1" className="mb-4 text-white">
             SCENT
           </PHeadline>
-          <PText size="large" className="mb-2">
+          <PText size="large" className="mb-2 text-gray-200">
             Smart Comparison Engine for Notes & Traits
           </PText>
-          <PText className="text-sm md:text-base">
+          <PText className="text-sm md:text-base text-gray-400">
             Find affordable perfume dupes and discover fragrances by their notes
           </PText>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-12 max-w-2xl mx-auto">
-          <div className="text-center p-2 md:p-4 bg-white rounded-lg shadow-sm">
-            <div className="text-2xl md:text-4xl font-bold">517</div>
-            <PText size="small" className="text-xs md:text-sm">Fragrances</PText>
+          <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+            <div className="text-2xl md:text-4xl font-bold text-white">517</div>
+            <PText size="small" className="text-xs md:text-sm text-gray-300">Fragrances</PText>
           </div>
-          <div className="text-center p-2 md:p-4 bg-white rounded-lg shadow-sm">
-            <div className="text-2xl md:text-4xl font-bold">498</div>
-            <PText size="small" className="text-xs md:text-sm">Unique Notes</PText>
+          <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+            <div className="text-2xl md:text-4xl font-bold text-white">498</div>
+            <PText size="small" className="text-xs md:text-sm text-gray-300">Unique Notes</PText>
           </div>
-          <div className="text-center p-2 md:p-4 bg-white rounded-lg shadow-sm">
-            <div className="text-2xl md:text-4xl font-bold">100%</div>
-            <PText size="small" className="text-xs md:text-sm">Free</PText>
+          <div className="text-center p-2 md:p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+            <div className="text-2xl md:text-4xl font-bold text-white">100%</div>
+            <PText size="small" className="text-xs md:text-sm text-gray-300">Free</PText>
           </div>
         </div>
 
@@ -61,12 +61,12 @@ export default function Home() {
         <div className="space-y-4 mb-8">
           <button
             onClick={() => setActiveView("search")}
-            className="w-full p-4 md:p-8 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
+            className="w-full p-4 md:p-8 bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-750 transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
           >
-            <div className="text-xl md:text-2xl font-bold mb-2 md:mb-4">
+            <div className="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-white">
               Search by Notes
             </div>
-            <PText className="mb-4 md:mb-6 text-sm md:text-base">
+            <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
               Enter perfume notes to find matching fragrances. Filter by price, brand, and more.
             </PText>
             <PButton variant="primary">
@@ -77,12 +77,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <button
               onClick={() => setActiveView("dupes")}
-              className="w-full p-4 md:p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
+              className="w-full p-4 md:p-6 bg-gray-800 border border-gray-700 rounded-lg h-full shadow-lg hover:shadow-xl hover:bg-gray-750 transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
             >
-              <div className="text-lg md:text-xl font-bold mb-2 md:mb-4">
+              <div className="text-lg md:text-xl font-bold mb-2 md:mb-4 text-white">
                 Dupe Finder
               </div>
-              <PText className="mb-4 md:mb-6 text-sm md:text-base">
+              <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
                 Find affordable alternatives to expensive fragrances based on note similarity.
               </PText>
               <PButton variant="secondary">
@@ -92,12 +92,12 @@ export default function Home() {
 
             <button
               onClick={() => setActiveView("explore")}
-              className="w-full p-4 md:p-6 bg-white border border-gray-200 rounded-lg h-full shadow-sm hover:shadow-md transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
+              className="w-full p-4 md:p-6 bg-gray-800 border border-gray-700 rounded-lg h-full shadow-lg hover:shadow-xl hover:bg-gray-750 transition-all active:scale-[0.98] md:hover:scale-[1.02] cursor-pointer text-left"
             >
-              <div className="text-lg md:text-xl font-bold mb-2 md:mb-4">
+              <div className="text-lg md:text-xl font-bold mb-2 md:mb-4 text-white">
                 Fragrance Explorer
               </div>
-              <PText className="mb-4 md:mb-6 text-sm md:text-base">
+              <PText className="mb-4 md:mb-6 text-sm md:text-base text-gray-300">
                 Explore perfumes visually with interactive note pyramids and ingredient details.
               </PText>
               <PButton variant="secondary">
@@ -109,7 +109,7 @@ export default function Home() {
 
         {/* Info Section */}
         <div className="text-center mt-16 pb-12">
-          <PText size="small">
+          <PText size="small" className="text-gray-400">
             Discover your perfect scent without breaking the bank
           </PText>
         </div>

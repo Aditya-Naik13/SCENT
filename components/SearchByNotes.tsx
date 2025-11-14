@@ -47,15 +47,15 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <div className="text-2xl md:text-3xl font-bold mb-2">
+            <div className="text-2xl md:text-3xl font-bold mb-2 text-white">
               Search by Notes
             </div>
-            <PText className="text-sm md:text-base">Find fragrances by selecting notes you love</PText>
+            <PText className="text-sm md:text-base text-gray-300">Find fragrances by selecting notes you love</PText>
           </div>
           <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
             Back
@@ -65,8 +65,8 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Left Column - Note Selection */}
           <div className="lg:col-span-1 space-y-4">
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <PHeadline variant="headline-4" className="mb-4">
+            <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-6">
+              <PHeadline variant="headline-4" className="mb-4 text-white">
                 Select Notes
               </PHeadline>
 
@@ -78,7 +78,7 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="e.g., vanilla, bergamot..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </PTextFieldWrapper>
               </div>
@@ -86,7 +86,7 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
               {/* Selected Notes */}
               {selectedNotes.length > 0 && (
                 <div className="mb-4">
-                  <PText size="small" className="mb-2 font-semibold">
+                  <PText size="small" className="mb-2 font-semibold text-gray-200">
                     Selected ({selectedNotes.length}):
                   </PText>
                   <div className="flex flex-wrap gap-2">
@@ -94,7 +94,7 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
                       <button
                         key={note}
                         onClick={() => handleNoteRemove(note)}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm hover:bg-blue-200 transition-colors"
+                        className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700 transition-colors"
                       >
                         {note} ×
                       </button>
@@ -105,7 +105,7 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
 
               {/* Available Notes */}
               <div className="mb-4">
-                <PText size="small" className="mb-2 font-semibold">
+                <PText size="small" className="mb-2 font-semibold text-gray-200">
                   Available Notes:
                 </PText>
                 <div className="max-h-96 overflow-y-auto space-y-1">
@@ -116,8 +116,8 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
                       disabled={selectedNotes.includes(note)}
                       className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                         selectedNotes.includes(note)
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'hover:bg-gray-100'
+                          ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                          : 'text-gray-200 hover:bg-gray-700'
                       }`}
                     >
                       {note}
@@ -152,10 +152,10 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
             {results.length > 0 ? (
               <div>
                 <div className="mb-4">
-                  <PHeadline variant="headline-4" className="mb-2">
+                  <PHeadline variant="headline-4" className="mb-2 text-white">
                     Found {results.length} matches
                   </PHeadline>
-                  <PText size="small">
+                  <PText size="small" className="text-gray-300">
                     Sorted by similarity to your selected notes
                   </PText>
                 </div>
@@ -171,11 +171,11 @@ export default function SearchByNotes({ onBack }: SearchByNotesProps) {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-                <PHeadline variant="headline-4" className="mb-4">
+              <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-12 text-center">
+                <PHeadline variant="headline-4" className="mb-4 text-white">
                   Select notes to start searching
                 </PHeadline>
-                <PText>
+                <PText className="text-gray-300">
                   Choose one or more notes from the left panel to find fragrances that match your preferences
                 </PText>
               </div>
