@@ -94,7 +94,7 @@ export default function NotePyramid({
 
     // Text wrapping function
     function wrap(text: any, width: number) {
-      text.each(function() {
+      text.each(function(this: SVGTextElement) {
         const text = d3.select(this);
         const words = text.text().split(/\s+/).reverse();
         let word;

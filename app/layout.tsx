@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
-import { PorscheDesignSystemProvider } from "@porsche-design-system/components-react/ssr";
-import "./globals.css";
+"use client";
 
-export const metadata: Metadata = {
-  title: "SCENT - Smart Comparison Engine for Notes & Traits",
-  description: "Find affordable perfume dupes and discover fragrances by their notes",
-};
+import { PorscheDesignSystemProvider } from "@porsche-design-system/components-react";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -14,6 +10,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>SCENT - Smart Comparison Engine for Notes & Traits</title>
+        <meta name="description" content="Find affordable perfume dupes and discover fragrances by their notes" />
+      </head>
       <body>
         <PorscheDesignSystemProvider>
           {children}
