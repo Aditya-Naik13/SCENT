@@ -43,18 +43,18 @@ export default function DupeFinder({ onBack }: DupeFinderProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <PHeadline variant="headline-2" className="mb-2">
+            <div className="text-2xl md:text-3xl font-bold mb-2">
               Dupe Finder
-            </PHeadline>
-            <PText>Find affordable alternatives to expensive fragrances</PText>
+            </div>
+            <PText className="text-sm md:text-base">Find affordable alternatives to expensive fragrances</PText>
           </div>
-          <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack}>
-            Back to Dashboard
+          <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
+            Back
           </PButton>
         </div>
 

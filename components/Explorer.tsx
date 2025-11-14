@@ -5,6 +5,8 @@ import { PHeadline, PText, PButton, PTextFieldWrapper } from "@porsche-design-sy
 import { fragrances, getAllBrands, getAllGenders } from "@/utils/fragrance";
 import type { Fragrance } from "@/types/fragrance";
 import FragranceCard from "./FragranceCard";
+import NotePyramid from "./NotePyramid";
+import AccordWheel from "./AccordWheel";
 
 interface ExplorerProps {
   onBack: () => void;
@@ -14,6 +16,8 @@ export default function Explorer({ onBack }: ExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGender, setSelectedGender] = useState<string>("all");
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
+  const [minRating, setMinRating] = useState<number>(0);
+  const [priceValue, setPriceValue] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"rating" | "name" | "votes">("rating");
   const [selectedFragrance, setSelectedFragrance] = useState<Fragrance | null>(null);
 
@@ -51,6 +55,20 @@ export default function Explorer({ onBack }: ExplorerProps) {
         }
       }
 
+      // Rating filter
+      if (minRating > 0 && f.rating < minRating) {
+        return false;
+      }
+
+      // Price value filter
+      if (priceValue !== "all" && f.priceValue) {
+        const priceEntries = Object.entries(f.priceValue);
+        const topPriceValue = priceEntries.sort(([,a], [,b]) => (b as number) - (a as number))[0];
+        if (topPriceValue && topPriceValue[0] !== priceValue) {
+          return false;
+        }
+      }
+
       return true;
     });
 
@@ -69,28 +87,30 @@ export default function Explorer({ onBack }: ExplorerProps) {
     });
 
     return filtered.slice(0, 50); // Limit to 50 for performance
-  }, [searchQuery, selectedGender, selectedBrand, sortBy]);
+  }, [searchQuery, selectedGender, selectedBrand, minRating, priceValue, sortBy]);
 
   const handleClearFilters = () => {
     setSearchQuery("");
     setSelectedGender("all");
     setSelectedBrand("all");
+    setMinRating(0);
+    setPriceValue("all");
     setSortBy("rating");
   };
 
   if (selectedFragrance) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-8">
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <PHeadline variant="headline-2">Fragrance Details</PHeadline>
-            <PButton variant="tertiary" onClick={() => setSelectedFragrance(null)}>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
+            <div className="text-2xl md:text-3xl font-bold">Fragrance Details</div>
+            <PButton variant="tertiary" onClick={() => setSelectedFragrance(null)} className="self-start md:self-auto">
               Back to Explorer
             </PButton>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white rounded-lg shadow-sm p-4 md:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {/* Image */}
               <div className="md:col-span-1">
                 <div className="w-full aspect-square bg-gray-100 rounded-lg overflow-hidden">
@@ -120,7 +140,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
                 </div>
 
                 {/* Rating & Stats */}
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-4 md:gap-6">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-yellow-500 text-xl">★</span>
@@ -130,7 +150,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       {selectedFragrance.votes} votes
                     </PText>
                   </div>
-                  <div className="border-l pl-6">
+                  <div className="border-l pl-4 md:pl-6">
                     <PText size="small" className="text-gray-600 mb-1">
                       Gender
                     </PText>
@@ -208,7 +228,7 @@ export default function Explorer({ onBack }: ExplorerProps) {
 
                 {/* Performance Metrics */}
                 {(selectedFragrance.longevity || selectedFragrance.sillage) && (
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {selectedFragrance.longevity && Object.keys(selectedFragrance.longevity).length > 0 && (
                       <div>
                         <PText size="small" className="font-semibold mb-2">
@@ -250,6 +270,50 @@ export default function Explorer({ onBack }: ExplorerProps) {
                 )}
               </div>
             </div>
+
+            {/* Visualizations Section */}
+            {(selectedFragrance.topNotes.length > 0 ||
+              selectedFragrance.middleNotes.length > 0 ||
+              selectedFragrance.baseNotes.length > 0) && (
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <PHeadline variant="headline-4" className="mb-6 text-center">
+                  Visual Analysis
+                </PHeadline>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Note Pyramid */}
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <PHeadline variant="headline-5" className="mb-4 text-center">
+                      Note Pyramid
+                    </PHeadline>
+                    <NotePyramid
+                      topNotes={selectedFragrance.topNotes}
+                      middleNotes={selectedFragrance.middleNotes}
+                      baseNotes={selectedFragrance.baseNotes}
+                      width={350}
+                      height={280}
+                    />
+                    <PText size="small" className="text-center mt-4 text-gray-600">
+                      Hierarchical composition from top to base
+                    </PText>
+                  </div>
+
+                  {/* Accord Wheel */}
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <PHeadline variant="headline-5" className="mb-4 text-center">
+                      Accord Wheel
+                    </PHeadline>
+                    <AccordWheel
+                      fragrance={selectedFragrance}
+                      width={300}
+                      height={280}
+                    />
+                    <PText size="small" className="text-center mt-4 text-gray-600">
+                      Fragrance family distribution
+                    </PText>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -257,18 +321,18 @@ export default function Explorer({ onBack }: ExplorerProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <PHeadline variant="headline-2" className="mb-2">
+            <div className="text-2xl md:text-3xl font-bold mb-2">
               Fragrance Explorer
-            </PHeadline>
-            <PText>Browse and discover {fragrances.length} fragrances</PText>
+            </div>
+            <PText className="text-sm md:text-base">Browse and discover {fragrances.length} fragrances</PText>
           </div>
-          <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack}>
-            Back to Dashboard
+          <PButton variant="tertiary" icon="arrow-head-left" onClick={onBack} className="self-start md:self-auto">
+            Back
           </PButton>
         </div>
 
@@ -324,6 +388,43 @@ export default function Explorer({ onBack }: ExplorerProps) {
                       {brand}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              {/* Minimum Rating */}
+              <div>
+                <PText size="small" className="font-semibold mb-2">
+                  Minimum Rating
+                </PText>
+                <select
+                  value={minRating}
+                  onChange={(e) => setMinRating(Number(e.target.value))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value={0}>All Ratings</option>
+                  <option value={3.0}>3.0+ ★</option>
+                  <option value={3.5}>3.5+ ★</option>
+                  <option value={4.0}>4.0+ ★</option>
+                  <option value={4.5}>4.5+ ★</option>
+                </select>
+              </div>
+
+              {/* Price Value */}
+              <div>
+                <PText size="small" className="font-semibold mb-2">
+                  Price Value
+                </PText>
+                <select
+                  value={priceValue}
+                  onChange={(e) => setPriceValue(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Values</option>
+                  <option value="great value">Great Value 💎</option>
+                  <option value="good value">Good Value ✓</option>
+                  <option value="ok">OK</option>
+                  <option value="overpriced">Overpriced</option>
+                  <option value="way overpriced">Way Overpriced</option>
                 </select>
               </div>
 
